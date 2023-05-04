@@ -20,11 +20,14 @@
 #define	MATH_3D_H
 
 #include <stdio.h>
-#define _USE_MATH_DEFINES
-#include <math.h>
 
-#define ToRadian(x) ((x) * M_PI / 180.0f)
-#define ToDegree(x) ((x) * 180.0f / M_PI)
+#ifdef WIN32
+#define _USE_MATH_DEFINES 
+#include <math.h>
+#endif
+
+#define ToRadian(x) (float)(((x) * M_PI / 180.0f))
+#define ToDegree(x) (float)(((x) * 180.0f / M_PI))
 
 float RandomFloat();
 
@@ -177,6 +180,20 @@ public:
     Matrix4f()
     {        
     }
+    
+   
+    Matrix4f Transpose() const
+    {
+        Matrix4f n;
+        
+        for (unsigned int i = 0 ; i < 4 ; i++) {
+            for (unsigned int j = 0 ; j < 4 ; j++) {
+                n.m[i][j] = m[j][i];
+            }
+        }
+        
+        return n;
+    }
 
 
     inline void InitIdentity()
@@ -215,7 +232,7 @@ public:
         return r;
     }
     
-    void Print()
+    void Print() const
     {
         for (int i = 0 ; i < 4 ; i++) {
             printf("%f %f %f %f\n", m[i][0], m[i][1], m[i][2], m[i][3]);

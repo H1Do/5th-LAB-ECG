@@ -22,16 +22,13 @@
 #include <map>
 #include <vector>
 #include <GL/glew.h>
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
+#include <assimp/Importer.hpp>      // C++ importer interface
+#include <assimp/scene.h>       // Output data structure
+#include <assimp/postprocess.h> // Post processing flags
 
 #include "util.h"
 #include "math_3d.h"
 #include "texture.h"
-
-#include "math_3d.cpp"
-#include "texture.cpp"
 
 struct Vertex
 {
@@ -59,7 +56,7 @@ public:
 
     bool LoadMesh(const std::string& Filename);
 
-    void Render();
+    void Render(unsigned int NumInstances, const Matrix4f* WVPMats, const Matrix4f* WorldMats);
 
 private:
     bool InitFromScene(const aiScene* pScene, const std::string& Filename);
@@ -77,10 +74,12 @@ private:
 #define INDEX_BUFFER 0    
 #define POS_VB       1
 #define NORMAL_VB    2
-#define TEXCOORD_VB  3       
+#define TEXCOORD_VB  3    
+#define WVP_MAT_VB   4
+#define WORLD_MAT_VB 5
 
     GLuint m_VAO;
-    GLuint m_Buffers[4];
+    GLuint m_Buffers[6];
 
     struct MeshEntry {
         MeshEntry()
