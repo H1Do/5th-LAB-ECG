@@ -19,7 +19,6 @@
 #define	PIPELINE_H
 
 #include "math_3d.h"
-#include "math_3d.cpp"
 
 class Pipeline
 {
@@ -43,6 +42,11 @@ public:
         m_worldPos.x = x;
         m_worldPos.y = y;
         m_worldPos.z = z;
+    }
+    
+    void WorldPos(const Vector3f& Pos)
+    {
+        m_worldPos = Pos;
     }
 
     void Rotate(float RotateX, float RotateY, float RotateZ)

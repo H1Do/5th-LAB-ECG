@@ -19,7 +19,9 @@
 #define	BILLBOARD_TECHNIQUE_H
 
 #include "technique.h"
+#include "technique.cpp"
 #include "math_3d.h"
+#include "math_3d.cpp"
 
 class BillboardTechnique : public Technique 
 {
