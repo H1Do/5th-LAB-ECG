@@ -69,6 +69,7 @@ static void InitCallbacks()
 
 void GLUTBackendInit(int argc, char** argv)
 {
+    Magick::InitializeMagick(*argv);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH);
     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);

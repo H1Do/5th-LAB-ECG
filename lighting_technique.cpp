@@ -22,8 +22,6 @@
 #include "lighting_technique.h"
 #include "util.h"
 
-
-
 LightingTechnique::LightingTechnique()
 {   
 }
